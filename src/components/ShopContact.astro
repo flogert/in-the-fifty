@@ -1,0 +1,356 @@
+---
+const supportOptions = [
+  {
+    title: 'Join the first show',
+    description: 'Set aside 50 minutes for the July 25 premiere and experience the format from the very beginning.',
+  },
+  {
+    title: 'Share the launch',
+    description: 'Pass the premiere details along to friends, family, and customers who appreciate quality and craftsmanship.',
+  },
+  {
+    title: 'Send a recommendation',
+    description: 'Introduce us to businesses, products, or services that deserve a spotlight in an upcoming episode.',
+  },
+];
+---
+
+<section id="shop" class="shop-section" aria-labelledby="shop-title">
+  <div class="container">
+    <header class="section-header">
+      <p class="section-eyebrow">Be Part of the Launch</p>
+      <h2 class="section-title" id="shop-title">Support the premiere in a way that feels personal and meaningful</h2>
+      <p class="section-subtitle">
+        Whether you tune in, share the date, or send a strong recommendation, every action helps
+        strengthen the first Studio50 broadcast.
+      </p>
+    </header>
+
+    <div class="shop-channels">
+      {supportOptions.map((option) => (
+        <article class="channel-card">
+          <div class="channel-info">
+            <strong>{option.title}</strong>
+            <span>{option.description}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact-liberty" aria-hidden="true">
+      <img src="/hero-liberty-bust.png" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title" id="contact-title">Send product leads, business referrals, or partnership ideas</h2>
+        <p class="contact-body">
+          If you know a product, business, or service that belongs in Studio50, send the details
+          directly to our team. Form submissions are addressed to info@inthefifty.com.
+        </p>
+        <a class="contact-email" href="mailto:info@inthefifty.com">info@inthefifty.com</a>
+      </div>
+      <form class="contact-form" id="contact-form" name="contact" novalidate aria-describedby="form-note">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" inputmode="email" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us about the product, business, or idea..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+        <p class="form-note" id="form-note">Submitting opens your default email app with the message addressed to info@inthefifty.com.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const contactForm = document.querySelector('#contact-form');
+
+  contactForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const formData = new FormData(form);
+    const name = String(formData.get('name') ?? '').trim();
+    const email = String(formData.get('email') ?? '').trim();
+    const message = String(formData.get('message') ?? '').trim();
+
+    const subject = encodeURIComponent(`IN THE FIFTY inquiry from ${name || 'website visitor'}`);
+    const body = encodeURIComponent([
+      `Name: ${name}`,
+      `Email: ${email}`,
+      '',
+      'Message:',
+      message,
+    ].join('\n'));
+
+    window.location.href = `mailto:info@inthefifty.com?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<style>
+  /* Shop section */
+  .shop-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #2c3346, #4d4034);
+    color: var(--color-white);
+    text-align: center;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a8b8e8;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 900;
+    font-family: var(--font-display);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: #c0cce8;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Channel cards */
+  .shop-channels {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .channel-card {
+    display: flex;
+    align-items: stretch;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(215, 191, 149, 0.2);
+    border-radius: 0;
+    padding: 1.4rem;
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.15s;
+    min-width: 0;
+    max-width: none;
+    text-align: left;
+    animation: fadeScaleSoft 0.8s ease-out both;
+  }
+
+  .channel-card:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .channel-card:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+
+  .channel-card:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .channel-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.65rem;
+  }
+
+  .channel-info strong {
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .channel-info span {
+    font-size: 0.96rem;
+    color: #d5cfc8;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    line-height: 1.7;
+  }
+
+  /* Contact section */
+  .contact-section {
+    padding: 4rem 1rem;
+    background: var(--color-light-gray);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-liberty {
+    position: absolute;
+    right: -0.5rem;
+    top: 1.5rem;
+    width: min(115px, 28vw);
+    opacity: 0.18;
+    pointer-events: none;
+    animation: floatSlow 7s ease-in-out infinite;
+  }
+
+  .contact-liberty img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-text .section-eyebrow {
+    color: var(--color-red);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-text .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    font-family: var(--font-display);
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+
+  .contact-body {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .contact-email {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: var(--color-red);
+    font-weight: 800;
+  }
+
+  /* Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: fadeScaleSoft 0.85s ease-out both;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text);
+    background: #fffdf8;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
+  }
+
+  .submit-btn {
+    background: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 0;
+    font-size: 1rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .submit-btn:hover {
+    background: #8b1a27;
+    transform: translateY(-2px);
+  }
+
+  .form-note {
+    font-size: 0.82rem;
+    color: #6f7892;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 700px) {
+    .shop-channels {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+    }
+
+    .submit-btn {
+      align-self: flex-start;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .submit-btn {
+      align-self: stretch;
+      text-align: center;
+    }
+  }
+</style>

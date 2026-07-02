@@ -1,0 +1,330 @@
+---
+const supportActions = [
+  'Share the launch with friends, family, and anyone who values thoughtful American-made businesses.',
+  'Share the initiative with friends and family who care about buying American-made.',
+  'Organize a watch party or group phone call during a live broadcast for more fun and reach.',
+  'Research American-made products and send us business names plus contact information.',
+];
+
+const platforms = ['Live Premiere', 'Website', 'Email', 'Community'];
+---
+
+<section id="studio50" class="studio-section" aria-labelledby="studio50-title">
+  <div class="container">
+    <div class="studio-bunting" aria-hidden="true">
+      <img src="/hero-bunting.png" alt="" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="studio-grid">
+      <div class="studio-copy">
+        <p class="section-eyebrow">American Made First</p>
+        <h2 class="section-title" id="studio50-title">Introducing Studio50</h2>
+        <p class="section-lead">
+          Many of us want to buy American-made — it really is that simple. What has not been
+          simple is finding a wide variety of US-made products at competitive prices, while also
+          giving businesses an affordable way to promote those products and services.
+        </p>
+        <p class="section-body">
+          That is what the IN THE FIFTY initiative is all about. Studio50 is our live shopping
+          experience built to showcase businesses and products made across all fifty states through an
+          energetic, social-first broadcast format.
+        </p>
+        <div class="platform-row" aria-label="Launch channels">
+          {platforms.map((platform) => <span class="platform-pill">{platform}</span>)}
+        </div>
+      </div>
+
+      <aside class="launch-card">
+        <span class="launch-label">Mark Your Calendar</span>
+        <h3>First show: Saturday, July 25 at 7 PM</h3>
+        <p>
+          Join us online for approximately 50 minutes of live product discovery as we move through
+          each episode's featured lineup.
+        </p>
+        <a href="#contact" class="launch-cta">Contact the Team</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="support" class="support-section" aria-labelledby="support-title">
+  <div class="support-liberty" aria-hidden="true">
+    <img src="/hero-liberty-tall.png" alt="" loading="lazy" decoding="async" />
+  </div>
+
+  <div class="container">
+    <header class="support-header">
+      <p class="section-eyebrow dark">How Can You Help?</p>
+      <h2 class="support-title" id="support-title">Help grow a people-first American-made movement</h2>
+      <p class="support-subtitle">
+        We are building a 1st of the people, by the people, for the people initiative — and your
+        support helps more makers get discovered.
+      </p>
+    </header>
+
+    <div class="support-grid">
+      {supportActions.map((action, index) => (
+        <article class="support-card">
+          <span class="support-number">0{index + 1}</span>
+          <p>{action}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .studio-section {
+    padding: 4rem 1rem;
+    background: var(--color-white);
+    position: relative;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .studio-bunting {
+    width: min(240px, 60vw);
+    margin: 0 auto 1.5rem;
+    opacity: 0.96;
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+
+  .studio-bunting img {
+    width: 100%;
+    height: auto;
+  }
+
+  .studio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .section-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-red);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-eyebrow.dark {
+    color: #f2b5ba;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 900;
+    font-family: var(--font-display);
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #30364a;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #59627c;
+    margin-bottom: 1.5rem;
+  }
+
+  .platform-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .platform-pill {
+    padding: 0.55rem 0.9rem;
+    background: var(--color-surface);
+    color: #5c4a36;
+    border: 1px solid var(--color-border);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .launch-card {
+    background: linear-gradient(155deg, #20294b 0%, #2d3761 54%, #b22234 100%);
+    color: var(--color-white);
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 2rem;
+    box-shadow: 0 20px 46px rgba(33, 42, 78, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    animation: fadeScaleSoft 0.85s ease-out both;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .launch-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 26px 56px rgba(33, 42, 78, 0.26);
+  }
+
+  .launch-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #aebbe0;
+  }
+
+  .launch-card h3 {
+    font-size: 1.75rem;
+    font-family: var(--font-display);
+    line-height: 1.2;
+  }
+
+  .launch-card p {
+    color: #d0d8ec;
+    line-height: 1.7;
+  }
+
+  .launch-cta {
+    align-self: flex-start;
+    padding: 0.85rem 1.25rem;
+    border-radius: 0;
+    background: var(--color-red);
+    color: var(--color-white);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.88rem;
+  }
+
+  .support-section {
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #1d2544, #10192f);
+    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .support-liberty {
+    position: absolute;
+    left: -0.75rem;
+    bottom: -2rem;
+    width: min(110px, 24vw);
+    opacity: 0.22;
+    pointer-events: none;
+    animation: floatSlow 7s ease-in-out infinite;
+  }
+
+  .support-liberty img {
+    width: 100%;
+    height: auto;
+  }
+
+  .support-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .support-title {
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+    font-weight: 900;
+    font-family: var(--font-display);
+    margin-bottom: 0.85rem;
+  }
+
+  .support-subtitle {
+    color: #b7c4e0;
+    line-height: 1.7;
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .support-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(215, 191, 149, 0.18);
+    border-radius: 0;
+    padding: 1.4rem;
+    min-height: 180px;
+    animation: fadeScaleSoft 0.8s ease-out both;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  }
+
+  .support-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .support-card:nth-child(2) {
+    animation-delay: 0.06s;
+  }
+
+  .support-card:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+
+  .support-card:nth-child(4) {
+    animation-delay: 0.18s;
+  }
+
+  .support-number {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    color: #f4c3c8;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .support-card p {
+    line-height: 1.75;
+    color: #eef2fb;
+  }
+
+  @media (min-width: 700px) {
+    .support-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 900px) {
+    .studio-section,
+    .support-section {
+      padding: 5rem 1.25rem;
+    }
+
+    .studio-grid {
+      grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+      gap: 2rem;
+    }
+
+    .studio-bunting {
+      width: min(320px, 26vw);
+      margin: 0 0 1.75rem auto;
+    }
+
+    .support-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .support-liberty {
+      width: min(170px, 14vw);
+    }
+  }
+</style>

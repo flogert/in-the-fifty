@@ -1,0 +1,150 @@
+---
+const stats = [
+  { value: '100%', label: 'American-Made Products' },
+  { value: '50', label: 'States Represented' },
+  { value: '500+', label: 'Products & Counting' },
+  { value: '1M+', label: 'TikTok Views' },
+];
+---
+
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">Why We Started<br /><em>IN THE FIFTY</em></h2>
+        <p class="about-body">
+          We believe buying American isn't just patriotism — it's an investment
+          in your neighbor. Every dollar spent on a US-made product stays in our
+          communities, supports American jobs, and keeps generational craftsmanship alive.
+        </p>
+        <p class="about-body">
+          "IN THE FIFTY" is our reminder that incredible products are made right
+          here — across all fifty states. We scour the country to find the best,
+          then bring them to your door.
+        </p>
+        <div class="about-badges">
+          <span class="badge">🏭 American Workers</span>
+          <span class="badge">🌿 Quality Materials</span>
+          <span class="badge">🤝 Small Businesses</span>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        {stats.map((stat) => (
+          <div class="stat-card">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 5rem 1.25rem;
+    background: var(--color-white);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Text */
+  .section-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-red);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    color: var(--color-dark);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--color-blue);
+  }
+
+  .about-body {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .about-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .badge {
+    background: var(--color-light-gray);
+    color: var(--color-dark);
+    border: 1px solid #dde2ec;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Stats */
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .stat-card {
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.4rem;
+  }
+
+  .stat-value {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--color-white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a0b0d0;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>
