@@ -3,6 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://flogert.github.io',
-  base: '/in-the-fifty/',
+  site: 'https://in-the-fifty.vercel.app',
+  base: '/',
 });
