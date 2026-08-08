@@ -1,22 +1,52 @@
 ---
+const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
 ---
 
 <section id="home" class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
-    <p class="hero-eyebrow">Studio50 Premiere</p>
-    <h1 class="hero-title" id="hero-title">Our first show airs Saturday, July 25 at 7 PM.</h1>
-    <p class="hero-subtitle">
-      Join IN THE FIFTY for a focused, 50-minute live showcase built to spotlight standout
-      makers, thoughtful products, and the businesses behind them.
-    </p>
-    <div class="hero-details" aria-label="Premiere details">
-      <span>Saturday, July 25</span>
-      <span>7:00 PM</span>
-      <span>50-minute live feature</span>
-    </div>
-    <div class="hero-actions">
-      <a href="#studio50" class="btn btn-primary">Explore Studio50</a>
-      <a href="#contact" class="btn btn-outline">Send Us a Lead</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Studio50 Live</p>
+        <h1 class="hero-title" id="hero-title">
+          Next episode<br />
+          <span>Sunday, August 16 at 7 PM EST</span>
+        </h1>
+        <p class="hero-subtitle">
+          Join us for a 50 minute live show featuring American made brands and products.
+        </p>
+        <div class="hero-details" aria-label="Episode details">
+          <span>Sunday, August 16</span>
+          <span>7:00 PM EST</span>
+          <span>50 minute live show</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#studio50" class="btn btn-primary">Explore Studio50</a>
+          <a href="#contact" class="btn btn-outline">Send Us a Lead</a>
+        </div>
+      </div>
+
+      <aside class="countdown-card" aria-labelledby="countdown-title" data-countdown data-target={nextEpisodeIso}>
+        <p class="countdown-eyebrow" id="countdown-title">Countdown to Air</p>
+        <div class="countdown-grid" role="timer" aria-live="polite" aria-atomic="true">
+          <div class="countdown-unit">
+            <span class="countdown-value" data-countdown-value="days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" data-countdown-value="hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" data-countdown-value="minutes">--</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" data-countdown-value="seconds">--</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+        <p class="countdown-note" data-countdown-message>Counting down to the 7 PM EST broadcast.</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -24,7 +54,7 @@
 <style>
   .hero {
     position: relative;
-    min-height: calc(100svh - 4.5rem);
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +63,7 @@
       radial-gradient(circle at 78% 24%, rgba(178, 34, 52, 0.26), transparent 26%),
       linear-gradient(135deg, #b22234 0%, #f7f8fc 46%, #3c3b6e 100%);
     overflow: hidden;
-    padding: 5.75rem 1rem 3rem;
+    padding: clamp(4.75rem, 10vh, 5.75rem) 1rem clamp(2rem, 5vh, 3rem);
   }
 
   .hero::before,
@@ -62,11 +92,20 @@
 
   .hero-content {
     position: relative;
-    width: min(100%, 44rem);
-    text-align: center;
+    width: min(100%, 72rem);
     color: var(--color-dark);
     z-index: 2;
     animation: fadeScaleSoft 0.8s ease-out both;
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .hero-copy {
+    text-align: left;
   }
 
   .hero-eyebrow {
@@ -88,41 +127,111 @@
     text-wrap: balance;
   }
 
+  .hero-title span {
+    display: inline-block;
+    margin-top: 0.45rem;
+    padding: 0.16em 0.3em;
+    border-radius: 0.35rem;
+    color: var(--color-white);
+    background: linear-gradient(90deg, var(--color-red), var(--color-blue));
+    box-shadow: 0 12px 26px rgba(18, 24, 48, 0.16);
+  }
+
   .hero-subtitle {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: #27304b;
-    max-width: 560px;
-    margin: 0 auto 1.75rem;
-    line-height: 1.7;
+    max-width: 34rem;
+    margin: 0 0 1.5rem;
+    line-height: 1.65;
   }
 
   .hero-details {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.75rem;
-    margin: 0 auto 2rem;
+    margin: 0 0 1.75rem;
   }
 
   .hero-details span {
     display: inline-flex;
     align-items: center;
-    padding: 0.7rem 1rem;
-    background: rgba(255, 255, 255, 0.66);
-    border: 1px solid rgba(60, 59, 110, 0.12);
+    padding: 0.58rem 0.82rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(60, 59, 110, 0.16);
+    border-radius: 0.4rem;
     box-shadow: 0 10px 30px rgba(18, 24, 48, 0.08);
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--color-blue);
     animation: fadeUpSoft 0.8s ease-out both;
+  }
+
+  .countdown-card {
+    width: min(100%, 27rem);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    animation: fadeScaleSoft 0.8s ease-out both;
+  }
+
+  .countdown-eyebrow {
+    margin: 0 0 0.9rem;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .countdown-unit {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1rem 0.6rem;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(60, 59, 110, 0.16);
+    border-radius: 0.45rem;
+    box-shadow: 0 12px 28px rgba(18, 24, 48, 0.08);
+  }
+
+  .countdown-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-dark);
+  }
+
+  .countdown-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a627a;
+  }
+
+  .countdown-note {
+    margin: 0.9rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #3a4563;
   }
 
   .hero-actions {
     display: flex;
     gap: 0.75rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     margin-bottom: 0;
   }
@@ -130,7 +239,7 @@
   .btn {
     display: inline-block;
     padding: 0.85rem 2rem;
-    border-radius: 0;
+    border-radius: 0.4rem;
     font-weight: 800;
     font-family: var(--font-display);
     font-size: 1rem;
@@ -168,7 +277,115 @@
 
   @media (min-width: 900px) {
     .hero {
-      padding: 4rem 1.25rem;
+      min-height: 100vh;
+      padding: 4rem 1.25rem 3.25rem;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+      gap: 4rem;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .hero {
+      min-height: auto;
+      padding: 5rem 1rem 2rem;
+    }
+
+    .hero-copy {
+      text-align: center;
+    }
+
+    .hero-title span {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-details,
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .countdown-card {
+      margin: 0 auto;
+      width: min(100%, 30rem);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero-title {
+      font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .countdown-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>
+
+<script>
+  const countdownRoot = document.querySelector('[data-countdown]');
+
+  if (countdownRoot instanceof HTMLElement) {
+    const targetValue = countdownRoot.dataset.target;
+    const message = countdownRoot.querySelector('[data-countdown-message]');
+    const values = {
+      days: countdownRoot.querySelector('[data-countdown-value="days"]'),
+      hours: countdownRoot.querySelector('[data-countdown-value="hours"]'),
+      minutes: countdownRoot.querySelector('[data-countdown-value="minutes"]'),
+      seconds: countdownRoot.querySelector('[data-countdown-value="seconds"]'),
+    };
+
+    const renderValue = (part, value) => {
+      const node = values[part];
+
+      if (node) {
+        node.textContent = String(value).padStart(2, '0');
+      }
+    };
+
+    const targetDate = targetValue ? new Date(targetValue) : null;
+
+    if (targetDate && !Number.isNaN(targetDate.getTime())) {
+      let intervalId = 0;
+
+      const updateCountdown = () => {
+        const distance = targetDate.getTime() - Date.now();
+
+        if (distance <= 0) {
+          renderValue('days', 0);
+          renderValue('hours', 0);
+          renderValue('minutes', 0);
+          renderValue('seconds', 0);
+
+          if (message) {
+            message.textContent = 'The episode is live now.';
+          }
+
+          window.clearInterval(intervalId);
+          return;
+        }
+
+        const totalSeconds = Math.floor(distance / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        renderValue('days', days);
+        renderValue('hours', hours);
+        renderValue('minutes', minutes);
+        renderValue('seconds', seconds);
+      };
+
+      updateCountdown();
+      intervalId = window.setInterval(updateCountdown, 1000);
+    }
+  }
+</script>
