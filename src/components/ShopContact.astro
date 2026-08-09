@@ -17,12 +17,11 @@ const supportOptions = [
 
 <section id="shop" class="shop-section" aria-labelledby="shop-title">
   <div class="container">
-    <header class="section-header">
-      <p class="section-eyebrow">Be Part of the Launch</p>
-      <h2 class="section-title" id="shop-title">Support the next episode</h2>
-      <p class="section-subtitle">
-        Tune in, share the date, or send us a strong recommendation.
-      </p>
+    <header class="section-header logo-header">
+      <div class="section-logo-frame">
+        <img class="section-logo" src="/inthefifty.jpg" alt="In The Fifty logo" loading="lazy" decoding="async" />
+      </div>
+      <h2 class="sr-only" id="shop-title">Support the next episode</h2>
     </header>
 
     <div class="shop-channels">
@@ -114,6 +113,36 @@ const supportOptions = [
     margin-bottom: 2.5rem;
   }
 
+  .logo-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .section-logo-frame {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .section-logo {
+    width: min(100%, 10rem);
+    border-radius: 1.2rem;
+    box-shadow: 0 16px 34px rgba(11, 16, 31, 0.24);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .section-eyebrow {
     font-size: 0.85rem;
     font-weight: 700;
@@ -150,7 +179,8 @@ const supportOptions = [
     align-items: stretch;
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(215, 191, 149, 0.2);
-    border-radius: 0;
+    border-radius: 1.2rem;
+    box-shadow: 0 16px 30px rgba(8, 11, 20, 0.14);
     padding: 1.4rem;
     color: var(--color-white);
     font-size: 1rem;
@@ -267,7 +297,8 @@ const supportOptions = [
   .form-group textarea {
     padding: 0.75rem 1rem;
     border: 1.5px solid var(--color-border);
-    border-radius: 0;
+    border-radius: 0.9rem;
+    box-shadow: 0 10px 24px rgba(18, 24, 48, 0.06);
     font-family: inherit;
     font-size: 1rem;
     color: var(--color-text);
@@ -287,7 +318,7 @@ const supportOptions = [
     color: var(--color-white);
     border: none;
     padding: 0.85rem 2rem;
-    border-radius: 0;
+    border-radius: 999px;
     font-size: 1rem;
     font-family: var(--font-display);
     font-weight: 700;
@@ -296,6 +327,7 @@ const supportOptions = [
     cursor: pointer;
     transition: background 0.2s, transform 0.15s;
     align-self: flex-start;
+    box-shadow: 0 14px 28px rgba(178, 34, 52, 0.22);
   }
 
   .submit-btn:hover {

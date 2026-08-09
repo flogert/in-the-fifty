@@ -6,6 +6,9 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
   <div class="hero-content">
     <div class="hero-grid">
       <div class="hero-copy">
+        <div class="hero-logo-frame">
+          <img class="hero-logo" src="/inthefifty.jpg" alt="In The Fifty logo" decoding="async" fetchpriority="high" />
+        </div>
         <p class="hero-eyebrow">Studio50 Live</p>
         <h1 class="hero-title" id="hero-title">
           Next episode<br />
@@ -63,7 +66,7 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
       radial-gradient(circle at 78% 24%, rgba(178, 34, 52, 0.26), transparent 26%),
       linear-gradient(135deg, #b22234 0%, #f7f8fc 46%, #3c3b6e 100%);
     overflow: hidden;
-    padding: clamp(4.75rem, 10vh, 5.75rem) 1rem clamp(2rem, 5vh, 3rem);
+    padding: calc(var(--header-height, 72px) - 0.65rem) 1rem clamp(2rem, 5vh, 3rem);
   }
 
   .hero::before,
@@ -105,7 +108,21 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
   }
 
   .hero-copy {
-    text-align: left;
+    text-align: center;
+  }
+
+  .hero-logo-frame {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 0.85rem;
+  }
+
+  .hero-logo {
+    display: block;
+    width: min(100%, 8.5rem);
+    border-radius: 1.2rem;
+    box-shadow: 0 16px 36px rgba(18, 24, 48, 0.18);
   }
 
   .hero-eyebrow {
@@ -141,14 +158,14 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: #27304b;
     max-width: 34rem;
-    margin: 0 0 1.5rem;
+    margin: 0 auto 1.5rem;
     line-height: 1.65;
   }
 
   .hero-details {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0.75rem;
     margin: 0 0 1.75rem;
   }
@@ -231,7 +248,7 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
   .hero-actions {
     display: flex;
     gap: 0.75rem;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 0;
   }
@@ -278,23 +295,29 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
   @media (min-width: 900px) {
     .hero {
       min-height: 100vh;
-      padding: 4rem 1.25rem 3.25rem;
+      padding: calc(var(--header-height, 72px) - 0.4rem) 1.25rem 3.25rem;
     }
 
     .hero-grid {
-      grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
-      gap: 4rem;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-copy {
+      width: min(100%, 46rem);
+      margin: 0 auto;
+    }
+
+    .countdown-card {
+      width: min(100%, 30rem);
+      margin: 0 auto;
     }
   }
 
   @media (max-width: 899px) {
     .hero {
       min-height: auto;
-      padding: 5rem 1rem 2rem;
-    }
-
-    .hero-copy {
-      text-align: center;
+      padding: calc(var(--header-height, 72px) - 0.65rem) 1rem 2rem;
     }
 
     .hero-title span {

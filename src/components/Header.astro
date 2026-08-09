@@ -23,13 +23,18 @@ const navLinks = [
 
     <a href="#contact" class="cta-btn header-cta">Reach Out</a>
 
-    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-navigation">
-      <span></span><span></span><span></span>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+    >
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
 
-  <!-- Mobile nav drawer -->
-  <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden>
     <ul class="mobile-nav-list">
       {navLinks.map((link) => (
         <li><a href={link.href} class="mobile-nav-link">{link.label}</a></li>
@@ -40,20 +45,47 @@ const navLinks = [
 </header>
 
 <script>
-  const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement;
-  const mobileNav = document.querySelector('.mobile-nav') as HTMLElement;
+  const header = document.querySelector('.site-header') as HTMLElement | null;
+  const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement | null;
+  const mobileNav = document.querySelector('.mobile-nav') as HTMLElement | null;
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-cta');
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
+  const syncHeaderHeight = () => {
+    if (!header) return;
+    document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+  };
+
+  const setMenuState = (isOpen: boolean) => {
+    if (!toggle || !mobileNav) return;
+
+    mobileNav.classList.toggle('open', isOpen);
+    mobileNav.hidden = !isOpen;
     toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  };
+
+  syncHeaderHeight();
+  window.addEventListener('resize', () => {
+    syncHeaderHeight();
+    if (window.innerWidth > 768) {
+      setMenuState(false);
+    }
   });
 
-  // Close mobile nav when a link is clicked
-  document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
+  toggle?.addEventListener('click', () => {
+    const isOpen = !(mobileNav?.classList.contains('open'));
+    setMenuState(isOpen);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      setMenuState(false);
+      toggle?.focus();
+    }
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => setMenuState(false));
   });
 </script>
 
@@ -61,7 +93,7 @@ const navLinks = [
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 300;
     background: rgba(18, 24, 48, 0.92);
     color: var(--color-white);
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -133,14 +165,15 @@ const navLinks = [
     font-family: var(--font-display);
     font-weight: 700;
     padding: 0.55rem 1.2rem;
-    border-radius: 0;
+    border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.16);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     white-space: nowrap;
-    transition: background 0.2s, transform 0.1s;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
     display: inline-block;
+    box-shadow: 0 12px 24px rgba(178, 34, 52, 0.22);
   }
 
   .cta-btn:hover {
@@ -158,11 +191,13 @@ const navLinks = [
     display: none;
     flex-direction: column;
     gap: 5px;
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
     cursor: pointer;
-    padding: 4px;
+    padding: 0.65rem;
     margin-left: auto;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
   }
 
   .menu-toggle span {
@@ -174,13 +209,25 @@ const navLinks = [
 
   /* Mobile nav */
   .mobile-nav {
-    display: none;
-    background: var(--color-dark);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    position: fixed;
+    top: calc(var(--header-height, 72px) + 0.5rem);
+    left: 1rem;
+    right: 1rem;
+    z-index: 220;
+    background: rgba(18, 24, 48, 0.98);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1.25rem;
+    box-shadow: 0 28px 56px rgba(0, 0, 0, 0.32);
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   .mobile-nav.open {
-    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .mobile-nav-list {
@@ -197,7 +244,8 @@ const navLinks = [
     letter-spacing: 0.04em;
     text-transform: uppercase;
     display: block;
-    padding: 0.25rem 0;
+    padding: 0.8rem 0.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
   .mobile-cta {
@@ -225,6 +273,10 @@ const navLinks = [
 
     .logo-text {
       font-size: 1.38rem;
+    }
+
+    .mobile-nav {
+      display: none !important;
     }
   }
 </style>
