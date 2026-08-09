@@ -22,7 +22,10 @@ const currentYear = new Date().getFullYear();
 
   <div class="footer-bottom">
     <p>&copy; {currentYear} IN THE FIFTY. All rights reserved.</p>
-    <p class="footer-disclaimer">American made first. Built to champion businesses across all fifty states.</p>
+    <p class="footer-disclaimer">
+      <span>American Made First</span>
+      <span>Built to champion businesses across all fifty states.</span>
+    </p>
   </div>
 </footer>
 
@@ -93,6 +96,10 @@ const currentYear = new Date().getFullYear();
 
   .footer-disclaimer {
     color: #5a6888;
+  }
+
+  .footer-disclaimer span {
+    display: block;
   }
 
   @media (max-width: 768px) {
