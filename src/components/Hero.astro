@@ -1,7 +1,3 @@
----
-const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
----
-
 <section id="home" class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <div class="hero-grid">
@@ -11,44 +7,43 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
         </div>
         <p class="hero-eyebrow">Studio50 Live</p>
         <h1 class="hero-title" id="hero-title">
-          Next episode<br />
-          <span>Sunday, August 16 at 7 PM EST</span>
+          <span>Stay in touch for updates</span>
         </h1>
         <p class="hero-subtitle">
-          Join us for a 50 minute live show featuring American made brands and products.
+          Follow along for upcoming features, new American made brands, and the latest Studio50 news.
         </p>
-        <div class="hero-details" aria-label="Episode details">
-          <span>Sunday, August 16</span>
-          <span>7:00 PM EST</span>
-          <span>50 minute live show</span>
+        <div class="hero-details" aria-label="Update details">
+          <span>Studio50 updates</span>
+          <span>American made brands</span>
+          <span>Feature announcements</span>
         </div>
         <div class="hero-actions">
           <a href="#studio50" class="btn btn-primary">Explore Studio50</a>
-          <a href="#contact" class="btn btn-outline">Send Us a Lead</a>
+          <a href="#contact" class="btn btn-outline">Stay in Touch</a>
         </div>
       </div>
 
-      <aside class="countdown-card" aria-labelledby="countdown-title" data-countdown data-target={nextEpisodeIso}>
-        <p class="countdown-eyebrow" id="countdown-title">Countdown to Air</p>
-        <div class="countdown-grid" role="timer" aria-live="polite" aria-atomic="true">
+      <aside class="countdown-card" aria-labelledby="countdown-title">
+        <p class="countdown-eyebrow" id="countdown-title">Stay Connected</p>
+        <div class="countdown-grid" aria-label="Ways to stay updated">
           <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-value="days">--</span>
-            <span class="countdown-label">Days</span>
+            <span class="countdown-value">01</span>
+            <span class="countdown-label">Send a lead</span>
           </div>
           <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-value="hours">--</span>
-            <span class="countdown-label">Hours</span>
+            <span class="countdown-value">02</span>
+            <span class="countdown-label">Watch for news</span>
           </div>
           <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-value="minutes">--</span>
-            <span class="countdown-label">Minutes</span>
+            <span class="countdown-value">03</span>
+            <span class="countdown-label">Share the brand</span>
           </div>
           <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-value="seconds">--</span>
-            <span class="countdown-label">Seconds</span>
+            <span class="countdown-value">04</span>
+            <span class="countdown-label">Check back soon</span>
           </div>
         </div>
-        <p class="countdown-note" data-countdown-message>Counting down to the 7 PM EST broadcast.</p>
+        <p class="countdown-note">Reach out through the contact section to get the latest Studio50 updates and feature announcements.</p>
       </aside>
     </div>
   </div>
@@ -188,12 +183,13 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
 
   .countdown-card {
     width: min(100%, 27rem);
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     border: 0;
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
+    text-align: center;
     animation: fadeScaleSoft 0.8s ease-out both;
   }
 
@@ -351,64 +347,3 @@ const nextEpisodeIso = '2026-08-16T19:00:00-04:00';
     }
   }
 </style>
-
-<script>
-  const countdownRoot = document.querySelector('[data-countdown]');
-
-  if (countdownRoot instanceof HTMLElement) {
-    const targetValue = countdownRoot.dataset.target;
-    const message = countdownRoot.querySelector('[data-countdown-message]');
-    const values = {
-      days: countdownRoot.querySelector('[data-countdown-value="days"]'),
-      hours: countdownRoot.querySelector('[data-countdown-value="hours"]'),
-      minutes: countdownRoot.querySelector('[data-countdown-value="minutes"]'),
-      seconds: countdownRoot.querySelector('[data-countdown-value="seconds"]'),
-    };
-
-    const renderValue = (part, value) => {
-      const node = values[part];
-
-      if (node) {
-        node.textContent = String(value).padStart(2, '0');
-      }
-    };
-
-    const targetDate = targetValue ? new Date(targetValue) : null;
-
-    if (targetDate && !Number.isNaN(targetDate.getTime())) {
-      let intervalId = 0;
-
-      const updateCountdown = () => {
-        const distance = targetDate.getTime() - Date.now();
-
-        if (distance <= 0) {
-          renderValue('days', 0);
-          renderValue('hours', 0);
-          renderValue('minutes', 0);
-          renderValue('seconds', 0);
-
-          if (message) {
-            message.textContent = 'The episode is live now.';
-          }
-
-          window.clearInterval(intervalId);
-          return;
-        }
-
-        const totalSeconds = Math.floor(distance / 1000);
-        const days = Math.floor(totalSeconds / 86400);
-        const hours = Math.floor((totalSeconds % 86400) / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-
-        renderValue('days', days);
-        renderValue('hours', hours);
-        renderValue('minutes', minutes);
-        renderValue('seconds', seconds);
-      };
-
-      updateCountdown();
-      intervalId = window.setInterval(updateCountdown, 1000);
-    }
-  }
-</script>
